@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Majority Element</title>
+    <title>Majority Element Finder</title>
 </head>
 <body>
-    <h1>Find the Majority Element</h1>
-    <p>Input Array: <span id="array">[2, 1, 2]</span></p>
+    <h1>Majority Element Finder</h1>
+    <p>Enter an array of numbers (comma-separated):</p>
+    <input type="text" id="arrayInput" placeholder="e.g., 2,1,2">
     <button onclick="findMajorityElement()">Find Majority Element</button>
-    <p>Result: <span id="result"></span></p>
+    <p><strong>Result:</strong> <span id="result">N/A</span></p>
 
     <script>
         function majorityElement(nums) {
-            // Boyer-Moore Voting Algorithm
             let count = 0;
             let candidate = null;
 
@@ -28,11 +28,26 @@
         }
 
         function findMajorityElement() {
-            const inputArray = [2, 1, 2]; // Example input
+            const input = document.getElementById("arrayInput").value;
+            if (!input) {
+                document.getElementById("result").textContent = "Please enter an array.";
+                return;
+            }
+
+            // Parse the input into an array of numbers
+            const inputArray = input.split(",").map(Number);
+            
+            if (inputArray.some(isNaN)) {
+                document.getElementById("result").textContent = "Invalid input. Please enter only numbers.";
+                return;
+            }
+
+            // Call the majorityElement function
             const result = majorityElement(inputArray);
             document.getElementById("result").textContent = result;
         }
     </script>
 </body>
 </html>
+
 
