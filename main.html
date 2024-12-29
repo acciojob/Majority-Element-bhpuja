@@ -1,16 +1,38 @@
 <!DOCTYPE html>
-
-<html>
-
+<html lang="en">
 <head>
-	<link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Majority Element</title>
 </head>
-
 <body>
-	<!-- the entire body must be written by student -->
-    <script type="text/javascript" src="./script.js">
-   </script>
+    <h1>Find the Majority Element</h1>
+    <p>Input Array: <span id="array">[2, 1, 2]</span></p>
+    <button onclick="findMajorityElement()">Find Majority Element</button>
+    <p>Result: <span id="result"></span></p>
 
+    <script>
+        function majorityElement(nums) {
+            // Boyer-Moore Voting Algorithm
+            let count = 0;
+            let candidate = null;
+
+            for (let num of nums) {
+                if (count === 0) {
+                    candidate = num;
+                }
+                count += (num === candidate) ? 1 : -1;
+            }
+
+            return candidate;
+        }
+
+        function findMajorityElement() {
+            const inputArray = [2, 1, 2]; // Example input
+            const result = majorityElement(inputArray);
+            document.getElementById("result").textContent = result;
+        }
+    </script>
 </body>
-
 </html>
+
